@@ -31,7 +31,6 @@ int main()
         }
     } //end for loop prime search
 
-
     for(int i = 0; i < primes.size(); i++)
     {
         int digits[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -50,8 +49,6 @@ int main()
             }
             vect.push_back(temp % 10); //stores digits for # of digits in int
             temp /= 10;
-
-           
         } //end while loop, temp != 0
 
         if (exists == true) //for all primes without zeroes and identical digits
