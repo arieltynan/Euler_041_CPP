@@ -14,6 +14,7 @@ int main()
     int n = 10000000;
     primes.push_back(2);
     int maxPrime = 0; // for storing max prime
+    int found = 0; // check if solution is found
     for (int i = 3; i < n; i++)
     {
         bool prime = true;
@@ -31,48 +32,51 @@ int main()
             //cout << i << " ";
         }
     } //end for loop prime search
-
-    for(int i = 0; i < primes.size(); i++)
+    
+    while (found == 0) // checking if solution is found, only need one prime
     {
-        int digits[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        int temp = primes[i];
-        vector<int> vect;
-        bool exists = true;
-        while (temp != 0) //separates ints into digits
+        for (int i = primes.size() - 1; i > -1; i--)
         {
-            if (find(begin(digits), end(digits), temp % 10) != end(digits) == true && temp % 10 != 0)
-            { 
-                digits[(temp % 10) - 1] = 0; // removes digits that exist in int
-            }
-            else //if digit appears twice or is zero, prime is invalid
+            int digits[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int temp = primes[i];
+            vector<int> vect;
+            bool exists = true;
+            while (temp != 0) //separates ints into digits
             {
-                exists = false;
-            }
-            vect.push_back(temp % 10); //stores digits for # of digits in int
-            temp /= 10;
-        } //end while loop, temp != 0
-
-        if (exists == true) //for all primes without zeroes and identical digits
-        {
-            //cout << i << endl;
-            //cout << primes[i] << " ";
-            for (int j = 1; j < vect.size() + 1; j++)
-            {
-                if (find(begin(digits), end(digits), j) != end(digits) == true)
+                if (find(begin(digits), end(digits), temp % 10) != end(digits) == true && temp % 10 != 0)
+                {
+                    digits[(temp % 10) - 1] = 0; // removes digits that exist in int
+                }
+                else //if digit appears twice or is zero, prime is invalid
                 {
                     exists = false;
-                    break;
+                }
+                vect.push_back(temp % 10); //stores digits for # of digits in int
+                temp /= 10;
+            } //end while loop, temp != 0
+
+            if (exists == true) //for all primes without zeroes and identical digits
+            {
+                //cout << i << endl;
+                //cout << primes[i] << " ";
+                for (int j = 1; j < vect.size() + 1; j++)
+                {
+                    if (find(begin(digits), end(digits), j) != end(digits) == true)
+                    {
+                        exists = false;
+                        break;
+                    }
                 }
             }
-        }
-        if (exists == true)
-        {
-            maxPrime = primes[i];
-            //cout << primes[i] << " "; //prints all viable pandigital primes
-        }
-        //max found is 7652413
-    } // end for loop, for each prime
-
+            if (exists == true)
+            {
+                maxPrime = primes[i];
+                found = 1;
+                // cout << primes[i] << " "; //prints all viable pandigital primes
+                break;
+            }
+        } // end for loop, for each prime
+    } // end of while loop checking if found
     cout << maxPrime << endl;
 
 
