@@ -13,6 +13,7 @@ int main()
     vector<int> primes; //vector containing primes
     int n = 10000000;
     primes.push_back(2);
+    int maxPrime = 0; // for storing max prime
     for (int i = 3; i < n; i++)
     {
         bool prime = true;
@@ -65,9 +66,14 @@ int main()
             }
         }
         if (exists == true)
-            cout << primes[i] << " "; //prints all viable pandigital primes
+        {
+            maxPrime = primes[i];
+            //cout << primes[i] << " "; //prints all viable pandigital primes
+        }
         //max found is 7652413
     } // end for loop, for each prime
+
+    cout << maxPrime << endl;
 
 
 
