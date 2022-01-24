@@ -35,7 +35,7 @@ int main()
     
     while (found == 0) // checking if solution is found, only need one prime
     {
-        for (int i = primes.size() - 1; i > -1; i--)
+        for (int i = primes.size() - 1; i > -1; i--) // New update! Iterating from the back!!!
         {
             int digits[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             int temp = primes[i];
