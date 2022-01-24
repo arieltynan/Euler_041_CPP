@@ -78,8 +78,4 @@ int main()
         } // end for loop, for each prime
     } // end of while loop checking if found
     cout << maxPrime << endl;
-
-
-
-
 }
